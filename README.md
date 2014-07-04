@@ -25,14 +25,14 @@ Use these commands as *root user*.
   apt-get install lib32ncurses5 libgstreamer-plugins-base0.10-0:i386 winbind
   ```
   
-  
+
 ## Wine Mono and Wine Gecko
-As a *normal user*, make sure there's wine directory inside the .cache directory.
+As a *normal user*, make sure there's *wine* directory inside the *.cache* directory.
 Then copy these .msi files (*wine-mono-0.0.8.msi* and *gecko-2.21-x86.msi*) into the directory:
 ```
 ~/.cache/wine/
 ```
-This step is an alternative, usually wine will automatically download these files for you.
+This step is an **alternative**, usually wine will automatically download these files for you.
   
   
 ## Tricks for Linux Debian 64-bit
@@ -65,15 +65,16 @@ Use these commands as *root user*.
     ```
   
 
-## Create 32-bit wine prefix.
-Use this command as *normal user*.
+## Create 32-bit Wine Prefix
+Use these commands as *normal user*.
   
-For example, *~/.wine-programs* is your directory location for program installation.
-```
-env WINEARCH=win32 WINEPREFIX=~/.wine-programs winecfg
-```
-  
-Then install the program, */location/to/setup.exe* is the setup file location.
-```
-env WINEARCH=win32 WINEPREFIX=~/.wine-programs wine /location/to/setup.exe
-```
+1.  For example, *~/.wine-programs* is your directory location for program installation.
+     Use this command to make the directory:
+     ```
+     env WINEARCH=win32 WINEPREFIX=~/.wine-programs winecfg
+     ```
+
+2.  */location/to/setup.exe* is the setup file location. Then install the program with this command:
+     ```
+     env WINEARCH=win32 WINEPREFIX=~/.wine-programs wine /location/to/setup.exe
+     ```
