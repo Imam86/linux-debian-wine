@@ -6,41 +6,41 @@ For more information, please visit: http://www.winehq.org.
 The binary package (*.deb) was compiled using Debian 7 64-bit with debootsrap and schroot methods. 
 
 
-### Installation
+## Installation
 Install as *root user* with this command:
 ```
 dpkg -i wine_1.6.2-1_i386.deb
 ```
 
 
-### Tricks for Linux Debian 64-bit
+## Tricks for Linux Debian 64-bit
 Use these command as *root user*.
 
 * Enable *multiarch*.
-```
-dpkg --add-architecture i386 && apt-get update
-```
+  ```
+  dpkg --add-architecture i386 && apt-get update
+  ```
 
 * Install additional packages.
-```
-apt-get install ia32-libs lib32ncurses5 libgstreamer-plugins-base0.10-0:i386
-```
+  ```
+  apt-get install ia32-libs lib32ncurses5 libgstreamer-plugins-base0.10-0:i386
+  ```
 
 * Fix *gnome-keyring* for wine 32-bit at Linux Debian 64-bit.
-  * Download gnome-keyring packages for 32-bit architecture
-  ```
-  apt-get download gnome-keyring:i386
-  dpkg -x gnome-keyring_*.deb gnome-keyring
-  cp -r gnome-keyring/usr/lib/i386-linux-gnu/pkcs11/ /usr/lib/i386-linux-gnu/
-  ```
+  * Download gnome-keyring packages for 32-bit architecture.
+    ```
+    apt-get download gnome-keyring:i386
+    dpkg -x gnome-keyring_*.deb gnome-keyring
+    cp -r gnome-keyring/usr/lib/i386-linux-gnu/pkcs11/ /usr/lib/i386-linux-gnu/
+    ```
 
-  * Check the DE (Desktop Environment) that you use in file: */etc/xdg/autostart/gnome-keyring-pkcs11.desktop*
-  Search for line:
-  ```
-  OnlyShowIn=
-  ```
-  For example, I'm using MATE, so I add/modify that line: 
-  ```
-  OnlyShowIn=MATE;
-  ```
-  
+  * Check the DE (Desktop Environment) that you use in file:
+    */etc/xdg/autostart/gnome-keyring-pkcs11.desktop*
+    Search for line:
+    ```
+    OnlyShowIn=
+    ```
+    For example, I'm using MATE, so I add/modify that line: 
+    ```
+    OnlyShowIn=MATE;
+    ```
