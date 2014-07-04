@@ -34,8 +34,9 @@ Use these command as *root user*.
     cp -r gnome-keyring/usr/lib/i386-linux-gnu/pkcs11/ /usr/lib/i386-linux-gnu/
     ```
 
-  * Check the DE (Desktop Environment) that you use in file:
-    */etc/xdg/autostart/gnome-keyring-pkcs11.desktop*
+  * Check the DE (Desktop Environment) that you use in file: 
+    * /etc/xdg/autostart/gnome-keyring-pkcs11.desktop *
+
     Search for line:
     ```
     OnlyShowIn=
