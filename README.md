@@ -13,34 +13,46 @@ Many users prefer to use 32-bit wine package in their 64-bit Debian, because the
  
  
 ## Installation
-Install as *root user* with this command:
-```
-dpkg -i wine_1.6.2-1_i386.deb
-```
+Use these commands as *root user*.
  
- 
+* Install wine.
+  ```
+  dpkg -i wine_1.6.2-1_i386.deb
+  ```
+  
+* Install some dependencies.
+  ```
+  apt-get install lib32ncurses5 libgstreamer-plugins-base0.10-0:i386 winbind
+  ```
+  
+  
+## Wine Mono and Wine Gecko
+As a *normal user*, make sure there's wine directory inside the .cache directory.
+Then copy these .msi files (*wine-mono-0.0.8.msi* and *gecko-2.21-x86.msi*) into the directory:
+```
+~/.cache/wine/
+```
+This step is an alternative, usually wine will automatically download these files for you.
+  
+  
 ## Tricks for Linux Debian 64-bit
-Use these command as *root user*.
+Use these commands as *root user*.
  
-* Enable *multiarch*.
+* **Missing some 32-bit libraries?** Enable *multiarch* and install additional 32-bit libraries.
   ```
-  dpkg --add-architecture i386 && apt-get update
+  dpkg --add-architecture i386 && apt-get update && apt-get install ia32-libs
   ```
- 
-* Install additional packages.
-  ```
-  apt-get install ia32-libs lib32ncurses5 libgstreamer-plugins-base0.10-0:i386
-  ```
- 
+  
 * Fix *gnome-keyring* for wine 32-bit at Linux Debian 64-bit.
-  * Download gnome-keyring packages for 32-bit architecture.
+  * Download *gnome-keyring* package for 32-bit architecture.
     ```
     apt-get download gnome-keyring:i386
     dpkg -x gnome-keyring_*.deb gnome-keyring
-    cp -r gnome-keyring/usr/lib/i386-linux-gnu/pkcs11/ /usr/lib/i386-linux-gnu/
+    cp -r gnome-keyring/usr/lib/i386-linux-gnu/pkcs11 /usr/lib/i386-linux-gnu/
     ```
  
   * Check the DE (Desktop Environment) that you use in file: 
+
     */etc/xdg/autostart/gnome-keyring-pkcs11.desktop*
  
     Search for line:
@@ -51,3 +63,17 @@ Use these command as *root user*.
     ```
     OnlyShowIn=MATE;
     ```
+  
+
+## Create 32-bit wine prefix.
+Use this command as *normal user*.
+  
+For example, *~/.wine-programs* is your directory location for program installation.
+```
+env WINEARCH=win32 WINEPREFIX=~/.wine-programs winecfg
+```
+  
+Then install the program, */location/to/setup.exe* is the setup file location.
+```
+env WINEARCH=win32 WINEPREFIX=~/.wine-programs wine /location/to/setup.exe
+```
